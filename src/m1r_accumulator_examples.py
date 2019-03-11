@@ -5,12 +5,12 @@ This module demonstrates the ACCUMULATOR pattern in three classic forms:
    IN GRAPHICS:   x = x + pixels
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
-         Aaron Wilkin, their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Aaron Wilkin, their colleagues, and Haozhe Wu.
+"""  #
 
 ###############################################################################
 #
-# TODO: 2.
+# done.
 #   RUN this program, then READ its code.
 #     Then answer the following, GETTING HELP AS NEED!  (Ask questions!!!)
 #     Write your answers in any reasonable way (your choice).
@@ -27,34 +27,34 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
 #          which of the following three choices would you use?
 #
 #            for k in range(r - 1):
-#            for k in range(r):
+#            for k in range(r): choose this
 #            for k in range(r + 1):
 #
 #     b. If you want a loop that runs from 0 to s, inclusive,
 #          what expression would you use in the _____ below?
 #
-#            for k in range(_____):
+#            for k in range(__s+1___):
 #
 #     c. If you want a loop that runs from r to s, inclusive, assuming s >= r,
 #          what expression would you use in the _____ below?
 #
-#            for k in range(_____):
+#            for k in range(__r,s+1___):
 #
 #     d. If you want a loop that runs from (r + 4) to (s - 10),
 #          including the (r + 4) but not including the (s - 10),
 #          what expression would you use in the _____ below?
 #
-#            for k in range(_____):
+#            for k in range(_r+4,s-10____):
 #
 #     e. The following code snippet attempts to return the number
 #          of integers from r to s, inclusive, whose cosines are positive.
 #          It has at least 5 distinct errors (one per line).  What are they?
 #
-#              for k in range(r - s):
-#                  count = 0
-#                  if math.cos(r) > 0:
-#                      count = 1
-#                  return count
+#              for k in range(r - s):   for k in range (r,s+1):
+#                  count = 0  This line should be outside the for loop
+#                  if math.cos(r) > 0: r should be k
+#                      count = 1  count=count+1
+#                  return count    should be print(count)
 #
 #     f. The code in the "graphics accumulation" example below includes:
 #            for _ in range(n):
@@ -72,7 +72,7 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
 #        If you want the row-of-circles that the above creates,
 #        one of the following two attempts is a CORRECT attempt
 #        (i.e., is equivalent in its functionality to the above)
-#        and one is WRONG.  Which is the WRONG one?
+#        and one is WRONG.  Which is the WRONG one?  The first one
 #
 #              x = starting_point.x
 #              for k in range(n):
@@ -103,7 +103,8 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
 
 import rosegraphics as rg
 import math
-
+for k in range (1,5):
+    pass
 
 def main():
     """ Calls the   TEST   functions in this module. """
@@ -139,7 +140,11 @@ def run_test_summing_example():
 
 
 def summing_example(n):
-    """
+    total = 0  # Initialize to 0 BEFORE the loop
+    for k in range(n):  # Loop
+        total = total + ((k + 1) ** 3)  # Accumulate INSIDE the loop.
+        return total  # Return the result AFTER the loop
+        """
     What comes in:  The sole argument is a non-negative integer n.
     What goes out:  Returns the sum
          (1 cubed) + (2 cubed) + (3 cubed) + ... + (n cubed).
@@ -148,12 +153,8 @@ def summing_example(n):
       -- If the integer is 4,
            this function returns (1 + 8 + 27 + 64), which is 100.
       -- If the integer is 20, this function returns 44,100.
-    """
-    total = 0  # Initialize to 0 BEFORE the loop
-    for k in range(n):  # Loop
-        total = total + ((k + 1) ** 3)  # Accumulate INSIDE the loop.
+        """
 
-    return total  # Return the result AFTER the loop
 
 
 def run_test_counting_example():
